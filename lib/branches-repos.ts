@@ -14,49 +14,49 @@ export const branchesRepos: Record<string, BranchRepo> = {
   faceymatch: {
     id: "faceymatch",
     name: "FaceyMatch - תמונות AI",
-    appUrl: "https://faceymatch.y-community.com", // או faceymatch.netlify.app / facematch-pro.vercel.app
+    appUrl: "https://facematch-pro.vercel.app",
     href: "/faceymatch",
   },
   trading: {
     id: "trading",
     name: "Y-Trading - מסחר",
-    appUrl: "https://trading.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-trading.vercel.app",
     href: "/trading",
   },
   finance: {
     id: "finance",
     name: "פיננסים",
-    appUrl: "https://finance.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-finance.vercel.app",
     href: "/finance",
   },
   leads: {
     id: "leads",
     name: "לידים",
-    appUrl: "https://leads.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-leads.vercel.app",
     href: "/leads",
   },
   productivity: {
     id: "productivity",
     name: "פרודוקטיביות",
-    appUrl: "https://productivity.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-productivity.vercel.app",
     href: "/productivity",
   },
   meetings: {
     id: "meetings",
     name: "ישיבות",
-    appUrl: "https://meetings.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-meetings.vercel.app",
     href: "/meetings",
   },
   insights: {
     id: "insights",
     name: "תובנות",
-    appUrl: "https://insights.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-insights.vercel.app",
     href: "/insights",
   },
   judaism: {
     id: "judaism",
     name: "יהדות",
-    appUrl: "https://judaism.y-community.com", // עדכן לפי ה-URL הנכון
+    appUrl: "https://y-judaism.vercel.app",
     href: "/judaism",
   },
 };
