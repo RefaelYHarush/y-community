@@ -1,0 +1,14 @@
+# robots.txt for Y Community
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://y-community.com/sitemap.xml
+
+# Disallow admin or private pages (if any in future)
+# Disallow: /admin
+# Disallow: /api
+
+# Crawl delay (optional)
+Crawl-delay: 0
