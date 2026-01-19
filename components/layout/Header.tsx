@@ -109,8 +109,8 @@ export function Header() {
                       <div className="p-2">
                         {item.submenu.map((subItem) => {
                           const branchRepo = getBranchRepoByHref(subItem.href);
-                          const linkHref = branchRepo?.repoUrl || subItem.href;
-                          const isExternal = branchRepo?.repoUrl ? true : false;
+                          const linkHref = branchRepo?.appUrl || subItem.href;
+                          const isExternal = branchRepo?.appUrl ? true : false;
                           
                           return (
                             <a
@@ -189,8 +189,8 @@ export function Header() {
                       <div className="mt-1 mr-4 border-r border-white/10">
                         {item.submenu.map((subItem) => {
                           const branchRepo = getBranchRepoByHref(subItem.href);
-                          const linkHref = branchRepo?.repoUrl || subItem.href;
-                          const isExternal = branchRepo?.repoUrl ? true : false;
+                          const linkHref = branchRepo?.appUrl || subItem.href;
+                          const isExternal = branchRepo?.appUrl ? true : false;
                           
                           return (
                             <a

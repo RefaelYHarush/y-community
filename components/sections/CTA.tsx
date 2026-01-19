@@ -81,14 +81,14 @@ export function CTA() {
                 const faceymatchRepo = getBranchRepo("faceymatch");
                 return (
                   <a
-                    href={faceymatchRepo?.repoUrl || "/faceymatch"}
-                    target={faceymatchRepo?.repoUrl ? "_blank" : undefined}
-                    rel={faceymatchRepo?.repoUrl ? "noopener noreferrer" : undefined}
+                    href={faceymatchRepo?.appUrl || "/faceymatch"}
+                    target={faceymatchRepo?.appUrl ? "_blank" : undefined}
+                    rel={faceymatchRepo?.appUrl ? "noopener noreferrer" : undefined}
                   >
                     <Button
                       size="lg"
                       variant="primary"
-                      rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
+                      rightIcon={faceymatchRepo?.appUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
                     >
                       התחל עכשיו - בחינם
                     </Button>

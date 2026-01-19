@@ -129,14 +129,14 @@ export default function FaceyMatchPage() {
                 const faceymatchRepo = getBranchRepo("faceymatch");
                 return (
                   <a
-                    href={faceymatchRepo?.repoUrl || "https://faceymatch.y-community.com"}
+                    href={faceymatchRepo?.appUrl || "https://faceymatch.y-community.com"}
                     target="_blank"
                     rel="noopener noreferrer"
                   >
                     <Button
                       size="lg"
                       leftIcon={<Camera className="w-5 h-5" />}
-                      rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
+                      rightIcon={faceymatchRepo?.appUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
                     >
                       התחל עכשיו - ₪97
                     </Button>
@@ -242,12 +242,12 @@ export default function FaceyMatchPage() {
                   const faceymatchRepo = getBranchRepo("faceymatch");
                   return (
                     <a
-                      href={faceymatchRepo?.repoUrl || "https://faceymatch.y-community.com"}
+                      href={faceymatchRepo?.appUrl || "https://faceymatch.y-community.com"}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block"
                     >
-                      <Button size="lg" className="w-full" rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : undefined}>
+                      <Button size="lg" className="w-full" rightIcon={faceymatchRepo?.appUrl ? <ExternalLink className="w-5 h-5" /> : undefined}>
                         התחל עכשיו
                       </Button>
                     </a>
@@ -315,13 +315,13 @@ export default function FaceyMatchPage() {
             const faceymatchRepo = getBranchRepo("faceymatch");
             return (
               <a
-                href={faceymatchRepo?.repoUrl || "https://faceymatch.y-community.com"}
+                href={faceymatchRepo?.appUrl || "https://faceymatch.y-community.com"}
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Button
                   size="lg"
-                  rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
+                  rightIcon={faceymatchRepo?.appUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
                 >
                   התחל עכשיו
                 </Button>

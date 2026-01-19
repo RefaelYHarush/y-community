@@ -133,8 +133,8 @@ export function Footer() {
               <ul className="space-y-3">
                 {section.links.map((link) => {
                   const branchRepo = getBranchRepoByHref(link.href);
-                  const linkHref = branchRepo?.repoUrl || link.href;
-                  const isExternal = branchRepo?.repoUrl ? true : false;
+                  const linkHref = branchRepo?.appUrl || link.href;
+                  const isExternal = branchRepo?.appUrl ? true : false;
                   
                   return (
                     <li key={link.name}>

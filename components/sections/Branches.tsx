@@ -183,8 +183,8 @@ export function Branches() {
                   {/* CTA */}
                   {(() => {
                     const branchRepo = getBranchRepo(branch.id);
-                    const linkHref = branchRepo?.repoUrl || branch.href;
-                    const isExternal = branchRepo?.repoUrl ? true : false;
+                    const linkHref = branchRepo?.appUrl || branch.href;
+                    const isExternal = branchRepo?.appUrl ? true : false;
                     
                     return (
                       <a
@@ -227,8 +227,8 @@ export function Branches() {
         >
           {branches.map((branch) => {
             const branchRepo = getBranchRepo(branch.id);
-            const linkHref = branchRepo?.repoUrl || branch.href;
-            const isExternal = branchRepo?.repoUrl ? true : false;
+            const linkHref = branchRepo?.appUrl || branch.href;
+            const isExternal = branchRepo?.appUrl ? true : false;
             
             return (
               <motion.div key={branch.id} variants={itemVariants}>
