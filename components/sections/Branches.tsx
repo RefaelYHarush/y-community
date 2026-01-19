@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Camera, TrendingUp, Wallet, Users, Zap, Calendar, BarChart3, Star } from "lucide-react";
+import { ArrowLeft, Camera, TrendingUp, Wallet, Users, Zap, Calendar, BarChart3, Star, ExternalLink } from "lucide-react";
 import { Card, Button, Badge } from "@/components/ui";
+import { getBranchRepo } from "@/lib/branches-repos";
 
 const featuredBranches = [
   {
@@ -180,20 +181,36 @@ export function Branches() {
                   </div>
 
                   {/* CTA */}
-                  <Link href={branch.href}>
-                    <Button
-                      className="group-hover:shadow-lg transition-shadow"
-                      style={{
-                        backgroundColor: branch.color,
-                        color: branch.id === "trading" ? "#013024" : "#013024",
-                      }}
-                      rightIcon={
-                        <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-                      }
-                    >
-                      {branch.id === "faceymatch" ? "התחל עכשיו" : "התחל לסחור"}
-                    </Button>
-                  </Link>
+                  {(() => {
+                    const branchRepo = getBranchRepo(branch.id);
+                    const linkHref = branchRepo?.repoUrl || branch.href;
+                    const isExternal = branchRepo?.repoUrl ? true : false;
+                    
+                    return (
+                      <a
+                        href={linkHref}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                      >
+                        <Button
+                          className="group-hover:shadow-lg transition-shadow"
+                          style={{
+                            backgroundColor: branch.color,
+                            color: branch.id === "trading" ? "#013024" : "#013024",
+                          }}
+                          rightIcon={
+                            isExternal ? (
+                              <ExternalLink className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                            ) : (
+                              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+                            )
+                          }
+                        >
+                          {branch.id === "faceymatch" ? "התחל עכשיו" : "התחל לסחור"}
+                        </Button>
+                      </a>
+                    );
+                  })()}
                 </div>
               </Card>
             </motion.div>
@@ -208,27 +225,42 @@ export function Branches() {
           viewport={{ once: true }}
           className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4"
         >
-          {branches.map((branch) => (
-            <motion.div key={branch.id} variants={itemVariants}>
-              <Link href={branch.href} className="block h-full">
-                <Card variant="hover" className="h-full p-6 text-center group">
-                  <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-lime/10 flex items-center justify-center group-hover:bg-brand-lime/20 transition-colors">
-                    <branch.icon className="w-7 h-7 text-brand-lime" />
-                  </div>
-                  <h3 className="text-lg font-bold text-white mb-2">
-                    {branch.name}
-                  </h3>
-                  <p className="text-sm text-white/60 mb-4">
-                    {branch.description}
-                  </p>
-                  <span className="inline-flex items-center gap-1 text-brand-lime text-sm font-medium group-hover:gap-2 transition-all">
-                    גש לשלוחה
-                    <ArrowLeft className="w-4 h-4" />
-                  </span>
-                </Card>
-              </Link>
-            </motion.div>
-          ))}
+          {branches.map((branch) => {
+            const branchRepo = getBranchRepo(branch.id);
+            const linkHref = branchRepo?.repoUrl || branch.href;
+            const isExternal = branchRepo?.repoUrl ? true : false;
+            
+            return (
+              <motion.div key={branch.id} variants={itemVariants}>
+                <a
+                  href={linkHref}
+                  target={isExternal ? "_blank" : undefined}
+                  rel={isExternal ? "noopener noreferrer" : undefined}
+                  className="block h-full"
+                >
+                  <Card variant="hover" className="h-full p-6 text-center group">
+                    <div className="w-14 h-14 mx-auto mb-4 rounded-2xl bg-brand-lime/10 flex items-center justify-center group-hover:bg-brand-lime/20 transition-colors">
+                      <branch.icon className="w-7 h-7 text-brand-lime" />
+                    </div>
+                    <h3 className="text-lg font-bold text-white mb-2">
+                      {branch.name}
+                    </h3>
+                    <p className="text-sm text-white/60 mb-4">
+                      {branch.description}
+                    </p>
+                    <span className="inline-flex items-center gap-1 text-brand-lime text-sm font-medium group-hover:gap-2 transition-all">
+                      גש לשלוחה
+                      {isExternal ? (
+                        <ExternalLink className="w-4 h-4" />
+                      ) : (
+                        <ArrowLeft className="w-4 h-4" />
+                      )}
+                    </span>
+                  </Card>
+                </a>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

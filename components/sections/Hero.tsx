@@ -2,8 +2,9 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Sparkles, Zap, Shield } from "lucide-react";
+import { ArrowLeft, Sparkles, Zap, Shield, ExternalLink } from "lucide-react";
 import { Button, Badge } from "@/components/ui";
+import { getBranchRepo } from "@/lib/branches-repos";
 
 const stats = [
   { value: "10+", label: "שלוחות פעילות" },
@@ -87,16 +88,25 @@ export function Hero() {
             transition={{ duration: 0.5, delay: 0.3 }}
             className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16"
           >
-            <Link href="/faceymatch">
-              <Button
-                size="lg"
-                variant="primary"
-                leftIcon={<span className="text-xl">📸</span>}
-                rightIcon={<ArrowLeft className="w-5 h-5" />}
-              >
-                נסה את FaceyMatch
-              </Button>
-            </Link>
+            {(() => {
+              const faceymatchRepo = getBranchRepo("faceymatch");
+              return (
+                <a
+                  href={faceymatchRepo?.repoUrl || "/faceymatch"}
+                  target={faceymatchRepo?.repoUrl ? "_blank" : undefined}
+                  rel={faceymatchRepo?.repoUrl ? "noopener noreferrer" : undefined}
+                >
+                  <Button
+                    size="lg"
+                    variant="primary"
+                    leftIcon={<span className="text-xl">📸</span>}
+                    rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
+                  >
+                    נסה את FaceyMatch
+                  </Button>
+                </a>
+              );
+            })()}
             <Link href="#branches">
               <Button size="lg" variant="secondary">
                 גלה את השלוחות

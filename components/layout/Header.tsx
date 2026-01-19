@@ -4,9 +4,10 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, ChevronDown, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import { getBranchRepoByHref } from "@/lib/branches-repos";
 
 const navigation = [
   {
@@ -106,20 +107,33 @@ export function Header() {
                       className="absolute top-full right-0 mt-2 w-64 bg-brand-green-dark/95 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl overflow-hidden"
                     >
                       <div className="p-2">
-                        {item.submenu.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="flex items-center justify-between px-4 py-3 text-white/80 hover:text-brand-lime hover:bg-white/5 rounded-xl transition-colors"
-                          >
-                            <span>{subItem.name}</span>
-                            {subItem.badge && (
-                              <span className="text-xs px-2 py-0.5 bg-brand-lime/20 text-brand-lime rounded-full">
-                                {subItem.badge}
-                              </span>
-                            )}
-                          </Link>
-                        ))}
+                        {item.submenu.map((subItem) => {
+                          const branchRepo = getBranchRepoByHref(subItem.href);
+                          const linkHref = branchRepo?.repoUrl || subItem.href;
+                          const isExternal = branchRepo?.repoUrl ? true : false;
+                          
+                          return (
+                            <a
+                              key={subItem.name}
+                              href={linkHref}
+                              target={isExternal ? "_blank" : undefined}
+                              rel={isExternal ? "noopener noreferrer" : undefined}
+                              className="flex items-center justify-between px-4 py-3 text-white/80 hover:text-brand-lime hover:bg-white/5 rounded-xl transition-colors"
+                            >
+                              <span>{subItem.name}</span>
+                              <div className="flex items-center gap-2">
+                                {subItem.badge && (
+                                  <span className="text-xs px-2 py-0.5 bg-brand-lime/20 text-brand-lime rounded-full">
+                                    {subItem.badge}
+                                  </span>
+                                )}
+                                {isExternal && (
+                                  <ExternalLink className="w-3 h-3 text-white/40" />
+                                )}
+                              </div>
+                            </a>
+                          );
+                        })}
                       </div>
                     </motion.div>
                   )}
@@ -173,21 +187,34 @@ export function Header() {
 
                     {item.submenu && (
                       <div className="mt-1 mr-4 border-r border-white/10">
-                        {item.submenu.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            href={subItem.href}
-                            onClick={() => setIsMobileMenuOpen(false)}
-                            className="flex items-center justify-between px-4 py-2 text-sm text-white/70 hover:text-brand-lime transition-colors"
-                          >
-                            <span>{subItem.name}</span>
-                            {subItem.badge && (
-                              <span className="text-xs px-2 py-0.5 bg-brand-lime/20 text-brand-lime rounded-full">
-                                {subItem.badge}
-                              </span>
-                            )}
-                          </Link>
-                        ))}
+                        {item.submenu.map((subItem) => {
+                          const branchRepo = getBranchRepoByHref(subItem.href);
+                          const linkHref = branchRepo?.repoUrl || subItem.href;
+                          const isExternal = branchRepo?.repoUrl ? true : false;
+                          
+                          return (
+                            <a
+                              key={subItem.name}
+                              href={linkHref}
+                              target={isExternal ? "_blank" : undefined}
+                              rel={isExternal ? "noopener noreferrer" : undefined}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="flex items-center justify-between px-4 py-2 text-sm text-white/70 hover:text-brand-lime transition-colors"
+                            >
+                              <span>{subItem.name}</span>
+                              <div className="flex items-center gap-2">
+                                {subItem.badge && (
+                                  <span className="text-xs px-2 py-0.5 bg-brand-lime/20 text-brand-lime rounded-full">
+                                    {subItem.badge}
+                                  </span>
+                                )}
+                                {isExternal && (
+                                  <ExternalLink className="w-3 h-3 text-white/40" />
+                                )}
+                              </div>
+                            </a>
+                          );
+                        })}
                       </div>
                     )}
                   </div>

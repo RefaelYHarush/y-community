@@ -11,7 +11,9 @@ import {
   Linkedin,
   Youtube,
   Heart,
+  ExternalLink,
 } from "lucide-react";
+import { getBranchRepoByHref } from "@/lib/branches-repos";
 
 const footerLinks = {
   branches: {
@@ -129,16 +131,27 @@ export function Footer() {
                 {section.title}
               </h3>
               <ul className="space-y-3">
-                {section.links.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-white/60 hover:text-brand-lime transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
+                {section.links.map((link) => {
+                  const branchRepo = getBranchRepoByHref(link.href);
+                  const linkHref = branchRepo?.repoUrl || link.href;
+                  const isExternal = branchRepo?.repoUrl ? true : false;
+                  
+                  return (
+                    <li key={link.name}>
+                      <a
+                        href={linkHref}
+                        target={isExternal ? "_blank" : undefined}
+                        rel={isExternal ? "noopener noreferrer" : undefined}
+                        className="text-white/60 hover:text-brand-lime transition-colors flex items-center gap-1"
+                      >
+                        {link.name}
+                        {isExternal && (
+                          <ExternalLink className="w-3 h-3 text-white/40" />
+                        )}
+                      </a>
+                    </li>
+                  );
+                })}
               </ul>
             </div>
           ))}

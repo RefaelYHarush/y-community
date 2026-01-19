@@ -13,8 +13,10 @@ import {
   Users,
   Star,
   Check,
+  ExternalLink,
 } from "lucide-react";
 import { Button, Card, Badge } from "@/components/ui";
+import { getBranchRepo } from "@/lib/branches-repos";
 
 const features = [
   {
@@ -123,19 +125,24 @@ export default function FaceyMatchPage() {
               transition={{ delay: 0.3 }}
               className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
-              <a
-                href="https://faceymatch.y-community.com"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <Button
-                  size="lg"
-                  leftIcon={<Camera className="w-5 h-5" />}
-                  rightIcon={<ArrowLeft className="w-5 h-5" />}
-                >
-                  התחל עכשיו - ₪97
-                </Button>
-              </a>
+              {(() => {
+                const faceymatchRepo = getBranchRepo("faceymatch");
+                return (
+                  <a
+                    href={faceymatchRepo?.repoUrl || "https://faceymatch.y-community.com"}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      size="lg"
+                      leftIcon={<Camera className="w-5 h-5" />}
+                      rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
+                    >
+                      התחל עכשיו - ₪97
+                    </Button>
+                  </a>
+                );
+              })()}
               <Button size="lg" variant="secondary">
                 צפה בהדגמה
               </Button>
@@ -231,16 +238,21 @@ export default function FaceyMatchPage() {
                   ))}
                 </ul>
 
-                <a
-                  href="https://faceymatch.y-community.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block"
-                >
-                  <Button size="lg" className="w-full">
-                    התחל עכשיו
-                  </Button>
-                </a>
+                {(() => {
+                  const faceymatchRepo = getBranchRepo("faceymatch");
+                  return (
+                    <a
+                      href={faceymatchRepo?.repoUrl || "https://faceymatch.y-community.com"}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      <Button size="lg" className="w-full" rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : undefined}>
+                        התחל עכשיו
+                      </Button>
+                    </a>
+                  );
+                })()}
 
                 <p className="text-sm text-white/40 mt-4">
                   ללא מנוי • ללא התחייבות • תשלום רק כשצריך
@@ -299,18 +311,23 @@ export default function FaceyMatchPage() {
           <p className="text-white/60 mb-8 max-w-xl mx-auto">
             הצטרפו לאלפי מפיקי אירועים וצלמים שכבר משתמשים ב-FaceyMatch
           </p>
-          <a
-            href="https://faceymatch.y-community.com"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Button
-              size="lg"
-              rightIcon={<ArrowLeft className="w-5 h-5" />}
-            >
-              התחל עכשיו
-            </Button>
-          </a>
+          {(() => {
+            const faceymatchRepo = getBranchRepo("faceymatch");
+            return (
+              <a
+                href={faceymatchRepo?.repoUrl || "https://faceymatch.y-community.com"}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <Button
+                  size="lg"
+                  rightIcon={faceymatchRepo?.repoUrl ? <ExternalLink className="w-5 h-5" /> : <ArrowLeft className="w-5 h-5" />}
+                >
+                  התחל עכשיו
+                </Button>
+              </a>
+            );
+          })()}
         </div>
       </section>
     </div>
