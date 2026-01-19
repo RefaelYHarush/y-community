@@ -1,62 +1,59 @@
 /**
  * מיפוי של כל השלוחות לאפליקציות המשתמש (דשבורדים)
  * Branch to User Application/Dashboard Mapping
+ * 
+ * להוסיף appUrl כשהאפליקציות יהיו deployed
  */
 
 export interface BranchRepo {
   id: string;
   name: string;
-  appUrl: string; // קישור לאפליקציית המשתמש
-  href?: string; // קישור פנימי (אם קיים)
+  appUrl?: string; // קישור לאפליקציית המשתמש (אופציונלי - רק אם deployed)
+  href: string; // קישור פנימי
 }
 
 export const branchesRepos: Record<string, BranchRepo> = {
   faceymatch: {
     id: "faceymatch",
     name: "FaceyMatch - תמונות AI",
-    appUrl: "https://facematch-pro.vercel.app",
+    // appUrl: "https://faceymatch.netlify.app", // הוסף כאן את ה-URL כש deployed
     href: "/faceymatch",
   },
   trading: {
     id: "trading",
     name: "Y-Trading - מסחר",
-    appUrl: "https://y-trading.vercel.app",
+    // appUrl: "https://y-trading.vercel.app", // הוסף כאן את ה-URL כש deployed
     href: "/trading",
   },
   finance: {
     id: "finance",
     name: "פיננסים",
-    appUrl: "https://y-finance.vercel.app",
+    // appUrl: "https://y-finance.vercel.app", // הוסף כאן את ה-URL כש deployed
     href: "/finance",
   },
   leads: {
     id: "leads",
     name: "לידים",
-    appUrl: "https://y-leads.vercel.app",
     href: "/leads",
   },
   productivity: {
     id: "productivity",
     name: "פרודוקטיביות",
-    appUrl: "https://y-productivity.vercel.app",
     href: "/productivity",
   },
   meetings: {
     id: "meetings",
     name: "ישיבות",
-    appUrl: "https://y-meetings.vercel.app",
     href: "/meetings",
   },
   insights: {
     id: "insights",
     name: "תובנות",
-    appUrl: "https://y-insights.vercel.app",
     href: "/insights",
   },
   judaism: {
     id: "judaism",
     name: "יהדות",
-    appUrl: "https://y-judaism.vercel.app",
     href: "/judaism",
   },
 };
