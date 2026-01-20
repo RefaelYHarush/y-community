@@ -61,7 +61,7 @@ export default function BookLandingPage() {
             transition={{ duration: 0.6 }}
             className="max-w-4xl mx-auto text-center"
           >
-            <Badge variant="outline" className="mb-6 border-brand-lime/30 text-brand-lime">
+            <Badge variant="custom" className="mb-6 border border-brand-lime/30 text-brand-lime bg-brand-lime/10">
               <BookOpen className="w-4 h-4 ml-2" />
               ספר דיגיטלי אינטראקטיבי
             </Badge>
