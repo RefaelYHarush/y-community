@@ -53,3 +53,4 @@ logs
 
 # Local Netlify folder
 .netlify
+.env*.local
